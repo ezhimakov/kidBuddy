@@ -1,0 +1,12 @@
+{
+  "name": "paintTalk",
+  "displayName": "paintTalk",
+  "expo": {
+    "name": "paintTalk",
+    "slug": "paintTalk",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

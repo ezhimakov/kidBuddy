@@ -1,195 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ColorsGame from "./src/components/ColorsGame";
+import ShapeGame from "./src/components/ShapeGame";
+import Home from "./src/components/Home";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const handlePress = () => false
-
-  const [color, setColor] = useState('red');
-  const updateState = () => {
-    const random = Math.random();
-    let colors = [ "AliceBlue",
-      "AntiqueWhite",
-      "Aqua",
-      "Aquamarine",
-      "Azure",
-      "Beige",
-      "Bisque",
-      "Black",
-      "BlanchedAlmond",
-      "Blue",
-      "BlueViolet",
-      "Brown",
-      "BurlyWood",
-      "CadetBlue",
-      "Chartreuse",
-      "Chocolate",
-      "Coral",
-      "CornflowerBlue",
-      "Cornsilk",
-      "Crimson",
-      "Cyan",
-      "DarkBlue",
-      "DarkCyan",
-      "DarkGoldenRod",
-      "DarkGray",
-      "DarkGrey",
-      "DarkGreen",
-      "DarkKhaki",
-      "DarkMagenta",
-      "DarkOliveGreen",
-      "DarkOrange",
-      "DarkOrchid",
-      "DarkRed",
-      "DarkSalmon",
-      "DarkSeaGreen",
-      "DarkSlateBlue",
-      "DarkSlateGray",
-      "DarkSlateGrey",
-      "DarkTurquoise",
-      "DarkViolet",
-      "DeepPink",
-      "DeepSkyBlue",
-      "DimGray",
-      "DimGrey",
-      "DodgerBlue",
-      "FireBrick",
-      "FloralWhite",
-      "ForestGreen",
-      "Fuchsia",
-      "Gainsboro",
-      "GhostWhite",
-      "Gold",
-      "GoldenRod",
-      "Gray",
-      "Grey",
-      "Green",
-      "GreenYellow",
-      "HoneyDew",
-      "HotPink",
-      "IndianRed",
-      "Indigo",
-      "Ivory",
-      "Khaki",
-      "Lavender",
-      "LavenderBlush",
-      "LawnGreen",
-      "LemonChiffon",
-      "LightBlue",
-      "LightCoral",
-      "LightCyan",
-      "LightGoldenRodYellow",
-      "LightGray",
-      "LightGrey",
-      "LightGreen",
-      "LightPink",
-      "LightSalmon",
-      "LightSeaGreen",
-      "LightSkyBlue",
-      "LightSlateGray",
-      "LightSlateGrey",
-      "LightSteelBlue",
-      "LightYellow",
-      "Lime",
-      "LimeGreen",
-      "Linen",
-      "Magenta",
-      "Maroon",
-      "MediumAquaMarine",
-      "MediumBlue",
-      "MediumOrchid",
-      "MediumPurple",
-      "MediumSeaGreen",
-      "MediumSlateBlue",
-      "MediumSpringGreen",
-      "MediumTurquoise",
-      "MediumVioletRed",
-      "MidnightBlue",
-      "MintCream",
-      "MistyRose",
-      "Moccasin",
-      "NavajoWhite",
-      "Navy",
-      "OldLace",
-      "Olive",
-      "OliveDrab",
-      "Orange",
-      "OrangeRed",
-      "Orchid",
-      "PaleGoldenRod",
-      "PaleGreen",
-      "PaleTurquoise",
-      "PaleVioletRed",
-      "PapayaWhip",
-      "PeachPuff",
-      "Peru",
-      "Pink",
-      "Plum",
-      "PowderBlue",
-      "Purple",
-      "RebeccaPurple",
-      "Red",
-      "RosyBrown",
-      "RoyalBlue",
-      "SaddleBrown",
-      "Salmon",
-      "SandyBrown",
-      "SeaGreen",
-      "SeaShell",
-      "Sienna",
-      "Silver",
-      "SkyBlue",
-      "SlateBlue",
-      "SlateGray",
-      "SlateGrey",
-      "Snow",
-      "SpringGreen",
-      "SteelBlue",
-      "Tan",
-      "Teal",
-      "Thistle",
-      "Tomato",
-      "Turquoise",
-      "Violet",
-      "Wheat",
-      "White",
-      "WhiteSmoke",
-      "Yellow",
-      "YellowGreen",]
-    const totalColors = colors.length;
-    const randIndex = Math.floor(random * totalColors)
-    const colorCurrent = colors[randIndex].toLowerCase()
-    setColor(colorCurrent)
-  }
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={{
-        backgroundColor: color,
-        borderRadius: 360/2,
-        width: 360,
-        height:360,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems:'center'
-      }} onPress={updateState}>
-        <Text style={{
-          fontSize: 32,
-          textTransform: 'uppercase',
-          fontWeight: '700',
-          color: 'white',
-          textShadow: '2px 2px 2px rgba(150, 150, 150, 1)'
-        }}>{color}</Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ title: 'Привет!' }}
+            />
+            <Stack.Screen
+              name="ColorsGame"
+              component={ColorsGame}
+            />
+            <Stack.Screen
+                name="ShapeGame"
+                component={ShapeGame}
+            />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
